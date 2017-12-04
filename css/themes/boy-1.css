@@ -1,0 +1,130 @@
+
+body {
+	color: #747474;
+	background-color: #ecf8f4;
+	background-image: url(../../img/boy-1/bg.png);
+}
+.btn {
+  background-color: #61c9a8;
+}
+.black {
+	color: #363636;
+}
+.navbar-brand {
+	background-image: url(../../img/boy-1/logo.png);
+}
+.site-name {
+	color: #61c9a8;
+}
+.navbar-2 {
+	border-color: #d2eae2;
+}
+.nav-item a {
+	color: #747474;
+}
+.nav-item.active a {
+	background-color: #61c9a8;
+	border-color: #61c9a8;
+}
+@media (min-width: 992px) {
+	.nav-item.active-link a,.nav-item:HOVER a{
+		color: #61c9a8;
+		border-color: #61c9a8;
+		background-color: #fff;
+	}
+}
+
+.bunner {
+	background-color: #fde8d7;
+}
+.bunner .bunner-bg {
+	background-image: url(../../img/boy-1/bunner.jpg);
+}
+
+.comments-wrap .comment-section:nth-child(odd) {
+	background-color: #e6eff6;
+}
+.comments-wrap .comment-section:nth-child(even) {
+	background-color: #e7f7f2;
+}
+.comments-wrap .comment-section .comment-content a,
+.comments-wrap .comment-section .comment-content .date {
+	color: #accbe1;
+}
+
+.section-game-results .table thead {
+	background-color: #61c9a8;
+	border-color: #61c9a8;
+}
+.section-game-results .table-striped tbody tr:nth-of-type(odd) {
+	background-color: #f8f8f8;
+}
+.section-game-results .table .number-1 {
+	background-color: #61c9a8;
+}
+.section-game-results .table .number-2 {
+	background-color: #accbe1;
+}
+.section-game-results .table .number-3 {
+	background-color: #212328;
+}
+
+.announcement-section {
+	background-color: #61c9a8;
+}
+.announcement-section .img-wrap .img-title {
+	color: #61c9a8;
+}
+
+.section-timeline .scale:before {
+	background-color: #accbe1;
+}
+.section-timeline .scale .row:nth-of-type(odd) .my-card .my-card-header {
+	background-color: #61c9a8;
+}
+.section-timeline .scale .row:nth-of-type(odd) .my-card .my-card-header:before {
+	border-left-color: #61c9a8;
+}
+.section-timeline .scale .row:nth-of-type(odd) .my-card .my-card-header:after {
+	background-color: #61c9a8;
+}
+.section-timeline .scale .row:nth-of-type(odd) .my-card .my-card-body .my-card-title,
+.section-timeline .scale .row:nth-of-type(odd) .my-card .my-card-body a {
+	color: #61c9a8;
+}
+.section-timeline .scale .row:nth-of-type(odd) .my-card .my-card-body .my-card-title:after {
+	background-color: #61c9a8;
+}
+.section-timeline .scale .row:nth-of-type(even) .my-card .my-card-header {
+	background-color: #accbe1;
+}
+@media (max-width: 767px) {
+	.section-timeline .scale .row:nth-of-type(even) .my-card .my-card-header:before {
+		border-left-color: #accbe1;
+	}
+}
+@media (min-width: 768px) {
+	.section-timeline .scale .row:nth-of-type(even) .my-card .my-card-header:before {
+		border-right-color: #accbe1;
+	}
+}
+.section-timeline .scale .row:nth-of-type(even) .my-card .my-card-header:after {
+	background-color: #accbe1;
+}
+.section-timeline .scale .row:nth-of-type(even) .my-card .my-card-body .my-card-title,
+.section-timeline .scale .row:nth-of-type(even) .my-card .my-card-body a {
+	color: #accbe1;
+}
+.section-timeline .scale .row:nth-of-type(even) .my-card .my-card-body .my-card-title:after {
+	background-color: #accbe1;
+}
+.section-timeline .mounth {
+  color: #61c9a8;
+}
+
+footer {
+	background-color: #61c9a8;
+}
+footer .footer-right {
+	border-color: #c2ffff;
+}

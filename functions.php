@@ -5,9 +5,9 @@
  * Time: 5:13 PM
  */
 if(!defined('ABSPATH'))die();
-define( 'INCLUDE_DIR', get_template_directory() . '/include/' );
+define( 'WBS_INCLUDE_DIR', get_template_directory() . '/include/' );
 include_once 'include/menuWalker.php';
-include_once INCLUDE_DIR.'/cls_customize_controls.php';
+include_once WBS_INCLUDE_DIR.'/cls_customize_controls.php';
 
 if(!function_exists('wbs_wp_localize_style')){
     function wbs_wp_localize_style(){
@@ -64,7 +64,7 @@ if(!function_exists('wbs_fontname_to_class')) {
 if(!function_exists('wbs_theme_styles')) {
     function wbs_theme_styles()
     {
-        wp_enqueue_style('bootstrap_css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css');
+        wp_enqueue_style('bootstrap_css', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css');
         wp_enqueue_style('et_google_fonts_css', get_template_directory_uri() . '/google-fonts/et_google_fonts.css');
         wp_enqueue_style('wbs_main_css', get_template_directory_uri() . '/css/style.css');
         wp_enqueue_style('wbs_theme-neutral-1', get_template_directory_uri() . '/css/themes/neutral-1.css');
@@ -93,8 +93,8 @@ if(!function_exists('wbs_theme_js')) {
         wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js", false, null);
         wp_enqueue_script('jquery');
         wp_enqueue_script('google-fonts', get_template_directory_uri() . '/google-fonts/et_google_fonts.js', array('jquery'));
-        wp_enqueue_script('popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js', array('jquery'));
-        wp_enqueue_script('bootstrap_js', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js', array('jquery'));
+        wp_enqueue_script('popper', '//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js', array('jquery'));
+        wp_enqueue_script('bootstrap_js', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js', array('jquery'));
         wp_enqueue_script('menu_fix_js', get_template_directory_uri() . '/js/menu_fix.js', array('jquery'));
 
 
@@ -130,7 +130,8 @@ if ( ! function_exists( 'wbs_html_body_start' ) ) {
                 <div class="container">
                     <div
                         class="col-12 padding-x d-flex align-items-center justify-content-center justify-content-lg-start">
-                        <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo  get_template_directory_uri(); ?>img/logo.png" alt=""></a>
+                        <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+                            </a>
                         <div class="site-name"><?php echo bloginfo('blogname');?></div>
                     </div>
                 </div>
@@ -388,7 +389,7 @@ endif;
 if ( ! function_exists( 'wbs_get_google_fonts' ) ) :
     function wbs_get_google_fonts() {
         // get hardcoded google fonts
-        require_once( INCLUDE_DIR . 'google-fonts-data.php' );
+        require_once( WBS_INCLUDE_DIR . 'google-fonts-data.php' );
         return wbs_get_saved_google_fonts();
 
         $google_fonts_cache = get_option( 'wbs_google_fonts_cache', array() );
@@ -425,7 +426,7 @@ if ( ! function_exists( 'wbs_get_google_fonts' ) ) :
             return apply_filters( 'wbs_builder_google_fonts', $google_fonts_cache );
         } else {
             // get hardcoded google fonts
-            require_once( INCLUDE_DIR . 'google-fonts-data.php' );
+            require_once( WBS_INCLUDE_DIR . 'google-fonts-data.php' );
             $google_fonts = wbs_get_saved_google_fonts();
         }
 
@@ -814,64 +815,7 @@ if(!function_exists('wbs_setup_options')) {
 
                 wbs_add_menu_items($pages,0,0,$menu_id);
 
-/*
-                // Set up default menu items
-                wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' =>  __('Home'),
-                    'menu-item-classes' => 'home',
-                    'menu-item-url' => home_url( '/' ),
-                    'menu-item-status' => 'publish'));
 
-                wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' =>  __('Guest Book'),
-                    'menu-item-classes' => 'guest_book',
-                    'menu-item-url' => home_url( '/#guest-book' ),
-                    'menu-item-status' => 'publish'));
-                wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' =>  __('Timeline'),
-                    'menu-item-classes' => 'timeline',
-                    'menu-item-url' => home_url( '/#timeline' ),
-                    'menu-item-status' => 'publish'));
-                wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' =>  __('Gift Registries'),
-                    'menu-item-classes' => 'gift-registries',
-                    'menu-item-url' => home_url( '/#gift_registries' ),
-                    'menu-item-status' => 'publish'));
-                wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' =>  __('Photo & Videos'),
-                    'menu-item-classes' => 'photo-n-videos',
-                    'menu-item-url' => home_url( '/#photo_n_videos' ),
-                    'menu-item-status' => 'publish'));
-                $game_menu_item  = wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' =>  __('Games'),
-                    'menu-item-classes' => 'games',
-                    'menu-item-url' => home_url( '/#games' ),
-                    'menu-item-status' => 'publish'));
-                wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' =>  __('Birthday Bet'),
-                    'menu-item-parent-id' => $game_menu_item,
-                    'menu-item-classes' => 'birthday-bet',
-                    'menu-item-url' => home_url( '/#games-birthday-bet' ),
-                    'menu-item-status' => 'publish'));
-                wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' =>  __('Baby Photo Game'),
-                    'menu-item-parent-id' => $game_menu_item,
-                    'menu-item-classes' => 'baby-photo-game',
-                    'menu-item-url' => home_url( '/#games-baby-photo-game' ),
-                    'menu-item-status' => 'publish'));
-                wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' =>  __('Quiz Games'),
-                    'menu-item-parent-id' => $game_menu_item,
-                    'menu-item-classes' => 'quiz-games',
-                    'menu-item-url' => home_url( '/#games-quiz-games' ),
-                    'menu-item-status' => 'publish'));
-                wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' =>  __('Video'),
-                    'menu-item-classes' => 'video',
-                    'menu-item-url' => home_url( '/#video' ),
-                    'menu-item-status' => 'publish'));
-
-*/
             }
        // }
     }

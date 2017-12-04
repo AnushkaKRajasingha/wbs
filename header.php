@@ -32,7 +32,7 @@
     <script src="<?php echo esc_url( $template_directory_uri . '/js/html5.js"' ); ?>" type="text/javascript"></script>
 	<![endif]-->
     <script type="text/javascript">
-        document.documentElement.className = 'js';
+        document.documentElement.className += ' js';
     </script>
     <?php wp_head(); ?>
 </head>

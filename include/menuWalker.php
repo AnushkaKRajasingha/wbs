@@ -6,7 +6,7 @@
  * Date: 11/28/2017
  * Time: 4:58 PM
  */
-class wbs_menuWalker extends Walker_Nav_Menu {
+class WBS_Theme_menuWalker extends Walker_Nav_Menu {
 
     // Tell Walker where to inherit it's parent and id values
     var $db_fields = array(

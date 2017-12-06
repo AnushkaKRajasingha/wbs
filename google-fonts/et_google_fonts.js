@@ -13,7 +13,7 @@
     ET_Google_Fonts.prototype = {
         defaults: {
             apply_font_to	: 'body',
-            used_for		: 'wbs_body_font'
+            used_for		: 'WBS_Theme_body_font'
         },
 
         create_dropdown: function(){
@@ -191,27 +191,27 @@
     };
 
     $(document).ready( function() {
-        var wbs_heading_font_option_name = '[heading_font]',
-            wbs_body_font_option_name = '[body_font]',
-            wbs_buttons_font_option_name = '[all_buttons_font]',
-            wbs_secondary_nav_font_option_name = '[secondary_nav_font]',
-            wbs_primary_nav_font_option_name = '[primary_nav_font]',
-            wbs_slide_nav_font_option_name = '[slide_nav_font]';
+        var WBS_Theme_heading_font_option_name = '[heading_font]',
+            WBS_Theme_body_font_option_name = '[body_font]',
+            WBS_Theme_buttons_font_option_name = '[all_buttons_font]',
+            WBS_Theme_secondary_nav_font_option_name = '[secondary_nav_font]',
+            WBS_Theme_primary_nav_font_option_name = '[primary_nav_font]',
+            WBS_Theme_slide_nav_font_option_name = '[slide_nav_font]';
 
         if ( typeof et_google_fonts !== 'undefined' && et_google_fonts.options_in_one_row == 0 ) {
-            wbs_heading_font_option_name = '_heading_font';
-            wbs_body_font_option_name = '_body_font';
-            wbs_buttons_font_option_name = '_all_buttons_font';
-            wbs_primary_nav_font_option_name = '_primary_nav_font';
-            wbs_secondary_nav_font_option_nam = '_secondary_nav_font';
-            wbs_slide_nav_font_option_name = '_slide_nav_font';
+            WBS_Theme_heading_font_option_name = '_heading_font';
+            WBS_Theme_body_font_option_name = '_body_font';
+            WBS_Theme_buttons_font_option_name = '_all_buttons_font';
+            WBS_Theme_primary_nav_font_option_name = '_primary_nav_font';
+            WBS_Theme_secondary_nav_font_option_nam = '_secondary_nav_font';
+            WBS_Theme_slide_nav_font_option_name = '_slide_nav_font';
         }
 
-        $('select[data-customize-setting-link$="' + wbs_heading_font_option_name + '"]').et_google_fonts({apply_font_to	: 'h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,.h1, .h2, .h3, .h4, .h5, .h6, .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a', used_for : 'wbs_heading_font'});
-        $('select[data-customize-setting-link$="' + wbs_body_font_option_name + '"]').et_google_fonts({apply_font_to	: 'body', used_for : 'wbs_body_font'});
-        $('select[data-customize-setting-link$="' + wbs_buttons_font_option_name + '"]').et_google_fonts({apply_font_to	: '.et_pb_button', used_for : 'et_all_buttons_font'});
-        $('select[data-customize-setting-link$="' + wbs_primary_nav_font_option_name + '"]').et_google_fonts({apply_font_to	: '#main-header, #et-top-navigation', used_for : 'wbs_primary_nav_font'});
-        $('select[data-customize-setting-link$="' + wbs_secondary_nav_font_option_name + '"]').et_google_fonts({apply_font_to	: '#top-header .container', used_for : 'wbs_secondary_nav_font'});
-        $('select[data-customize-setting-link$="' + wbs_slide_nav_font_option_name + '"]').et_google_fonts({apply_font_to	: '.et_slide_in_menu_container, .et_slide_in_menu_container .et-search-field', used_for : 'wbs_slide_nav_font'});
+        $('select[data-customize-setting-link$="' + WBS_Theme_heading_font_option_name + '"]').et_google_fonts({apply_font_to	: 'h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,.h1, .h2, .h3, .h4, .h5, .h6, .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a', used_for : 'WBS_Theme_heading_font'});
+        $('select[data-customize-setting-link$="' + WBS_Theme_body_font_option_name + '"]').et_google_fonts({apply_font_to	: 'body', used_for : 'WBS_Theme_body_font'});
+        $('select[data-customize-setting-link$="' + WBS_Theme_buttons_font_option_name + '"]').et_google_fonts({apply_font_to	: '.et_pb_button', used_for : 'et_all_buttons_font'});
+        $('select[data-customize-setting-link$="' + WBS_Theme_primary_nav_font_option_name + '"]').et_google_fonts({apply_font_to	: '#main-header, #et-top-navigation', used_for : 'WBS_Theme_primary_nav_font'});
+        $('select[data-customize-setting-link$="' + WBS_Theme_secondary_nav_font_option_name + '"]').et_google_fonts({apply_font_to	: '#top-header .container', used_for : 'WBS_Theme_secondary_nav_font'});
+        $('select[data-customize-setting-link$="' + WBS_Theme_slide_nav_font_option_name + '"]').et_google_fonts({apply_font_to	: '.et_slide_in_menu_container, .et_slide_in_menu_container .et-search-field', used_for : 'WBS_Theme_slide_nav_font'});
     } );
 })(jQuery)

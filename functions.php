@@ -5,32 +5,32 @@
  * Time: 5:13 PM
  */
 if(!defined('ABSPATH'))die();
-define( 'WBS_INCLUDE_DIR', get_template_directory() . '/include/' );
+define( 'WBS_THEME_INCLUDE_DIR', get_template_directory() . '/include/' );
 include_once 'include/menuWalker.php';
-include_once WBS_INCLUDE_DIR.'/cls_customize_controls.php';
+include_once WBS_THEME_INCLUDE_DIR.'/cls_customize_controls.php';
 
-if(!function_exists('wbs_wp_localize_style')){
-    function wbs_wp_localize_style(){
-        $header_font =  get_option('wbs_heading_font','Poppins');
-        $header_font_size = get_option('wbs_heading_font_size','38');
-        $body_font = get_option('wbs_body_font','Poppins');
-        $body_font_size = get_option('wbs_body_font_size','14');
-        $wbs_title_color = get_option('wbs_title_color');
-        $wbs_heading_text_color = get_option('wbs_heading_text_color');
-        $wbs_main_text_color = get_option('wbs_main_text_color');
-        $wbs_header_image = get_option('wbs_header_image');
-        $wbs_header_image_style = ".bunner .bunner-bg {	background-image: url('{$wbs_header_image}') !important;}";
+if(!function_exists('WBS_Theme_wp_localize_style')){
+    function WBS_Theme_wp_localize_style(){
+        $header_font =  get_option('WBS_Theme_heading_font','Poppins');
+        $header_font_size = get_option('WBS_Theme_heading_font_size','38');
+        $body_font = get_option('WBS_Theme_body_font','Poppins');
+        $body_font_size = get_option('WBS_Theme_body_font_size','14');
+        $WBS_Theme_title_color = get_option('WBS_Theme_title_color');
+        $WBS_Theme_heading_text_color = get_option('WBS_Theme_heading_text_color');
+        $WBS_Theme_main_text_color = get_option('WBS_Theme_main_text_color');
+        $WBS_Theme_header_image = get_option('WBS_Theme_header_image');
+        $WBS_Theme_header_image_style = ".bunner .bunner-bg {	background-image: url('{$WBS_Theme_header_image}') !important;}";
         $hide_menu_options = '#available-menu-items-post_type-post,#available-menu-items-taxonomy-category,
         #available-menu-items-taxonomy-post_tag,
         .customize-control.customize-control-nav_menu_locations,
         .customize-control.customize-control-nav_menu_auto_add,
         .customize-control.customize-control-undefined{display:none;}';
-        $header_style = "h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,.h1, .h2, .h3, .h4, .h5, .h6, .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a{ font-family: {$header_font}, sans-serif; color:{$wbs_heading_text_color} !important;} ";
+        $header_style = "h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,.h1, .h2, .h3, .h4, .h5, .h6, .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a{ font-family: {$header_font}, sans-serif; color:{$WBS_Theme_heading_text_color} !important;} ";
         $header_style2 = ".site-name{font-size:{$header_font_size}px !important;font-family: {$header_font}, sans-serif!important; }";
-        $body_style = "body {font-family: '{$body_font}', sans-serif !important;font-size:{$body_font_size}px !important;color:{$wbs_main_text_color} !important;}";
-        $wbs_title_color_style ='';
-        if($wbs_title_color){
-            $wbs_title_color_style = ".site-name{color:{$wbs_title_color} !important;}";
+        $body_style = "body {font-family: '{$body_font}', sans-serif !important;font-size:{$body_font_size}px !important;color:{$WBS_Theme_main_text_color} !important;}";
+        $WBS_Theme_title_color_style ='';
+        if($WBS_Theme_title_color){
+            $WBS_Theme_title_color_style = ".site-name{color:{$WBS_Theme_title_color} !important;}";
         }
         $__style = <<<STYLE
         <style type="text/css">
@@ -38,55 +38,55 @@ if(!function_exists('wbs_wp_localize_style')){
             {$header_style2}
             {$hide_menu_options}
             {$body_style}
-            {$wbs_title_color_style}
-            {$wbs_header_image_style}
+            {$WBS_Theme_title_color_style}
+            {$WBS_Theme_header_image_style}
         </style>
 STYLE;
         echo $__style;
     }
 }
-add_action('wp_head','wbs_wp_localize_style');
+add_action('wp_head','WBS_Theme_wp_localize_style');
 
-if(!function_exists('wbs_to_google_font_name')) {
-    function wbs_to_google_font_name($font_name)
+if(!function_exists('WBS_Theme_to_google_font_name')) {
+    function WBS_Theme_to_google_font_name($font_name)
     {
         return str_replace(' ', '+', $font_name);
     }
 }
 
-if(!function_exists('wbs_fontname_to_class')) {
-    function wbs_fontname_to_class($font_name)
+if(!function_exists('WBS_Theme_fontname_to_class')) {
+    function WBS_Theme_fontname_to_class($font_name)
     {
-        return 'wbs_' . strtolower(str_replace(' ', '_', $font_name));
+        return 'WBS_Theme_' . strtolower(str_replace(' ', '_', $font_name));
     }
 }
 
-if(!function_exists('wbs_theme_styles')) {
-    function wbs_theme_styles()
+if(!function_exists('WBS_Theme_theme_styles')) {
+    function WBS_Theme_theme_styles()
     {
         wp_enqueue_style('bootstrap_css', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css');
         wp_enqueue_style('et_google_fonts_css', get_template_directory_uri() . '/google-fonts/et_google_fonts.css');
-        wp_enqueue_style('wbs_main_css', get_template_directory_uri() . '/css/style.css');
-        wp_enqueue_style('wbs_theme-neutral-1', get_template_directory_uri() . '/css/themes/neutral-1.css');
+        wp_enqueue_style('WBS_Theme_main_css', get_template_directory_uri() . '/css/style.css');
+        wp_enqueue_style('WBS_Theme_theme-neutral-1', get_template_directory_uri() . '/css/themes/neutral-1.css');
         /* google font */
-        $header_font = get_option('wbs_heading_font', 'Poppins');
-        // var_dump(wbs_fontname_to_class($header_font));
-        // var_dump(wbs_to_google_font_name($header_font));
-        wp_enqueue_style(wbs_fontname_to_class($header_font), '//fonts.googleapis.com/css?family=' . wbs_to_google_font_name($header_font) . ':400,600,700', array(), array());
+        $header_font = get_option('WBS_Theme_heading_font', 'Poppins');
+        // var_dump(WBS_Theme_fontname_to_class($header_font));
+        // var_dump(WBS_Theme_to_google_font_name($header_font));
+        wp_enqueue_style(WBS_Theme_fontname_to_class($header_font), '//fonts.googleapis.com/css?family=' . WBS_Theme_to_google_font_name($header_font) . ':400,600,700', array(), array());
         /*google font*/
     }
 }
-add_action( 'wp_enqueue_scripts', 'wbs_theme_styles');
+add_action( 'wp_enqueue_scripts', 'WBS_Theme_theme_styles');
 
-if(!function_exists('wbs_customize_preview_css')){
-    function wbs_customize_preview_css(){
-        wp_enqueue_style( 'wbs_theme-customizer', get_template_directory_uri() . '/css/theme-customizer-controls-styles.css' );
+if(!function_exists('WBS_Theme_customize_preview_css')){
+    function WBS_Theme_customize_preview_css(){
+        wp_enqueue_style( 'WBS_Theme_theme-customizer', get_template_directory_uri() . '/css/theme-customizer-controls-styles.css' );
     }
 }
-add_action( 'customize_controls_enqueue_scripts', 'wbs_customize_preview_css' );
+add_action( 'customize_controls_enqueue_scripts', 'WBS_Theme_customize_preview_css' );
 
-if(!function_exists('wbs_theme_js')) {
-    function wbs_theme_js()
+if(!function_exists('WBS_Theme_theme_js')) {
+    function WBS_Theme_theme_js()
     {
         global $wp_scripts;
         wp_deregister_script('jquery');
@@ -100,28 +100,28 @@ if(!function_exists('wbs_theme_js')) {
 
     }
 }
-add_action( 'wp_enqueue_scripts', 'wbs_theme_js');
+add_action( 'wp_enqueue_scripts', 'WBS_Theme_theme_js');
 
 register_nav_menus( array(
     'primary-menu' => 'Primary Menu'
 ) );
 
-if ( ! function_exists( 'wbs_show_page_menu' ) ) {
+if ( ! function_exists( 'WBS_Theme_show_page_menu' ) ) {
 
-    function wbs_show_page_menu($customClass = 'nav clearfix', $addUlContainer = true, $addHomeLink = true){
+    function WBS_Theme_show_page_menu($customClass = 'nav clearfix', $addUlContainer = true, $addHomeLink = true){
         //need to be implemented for more features
     }
 
 }
-if ( ! function_exists( 'wbs_show_categories_menu' ) ) {
+if ( ! function_exists( 'WBS_Theme_show_categories_menu' ) ) {
 
-    function wbs_show_categories_menu($customClass = 'nav clearfix', $addUlContainer = true){
+    function WBS_Theme_show_categories_menu($customClass = 'nav clearfix', $addUlContainer = true){
         //need to be implemented for more features
     }
 
 }
-if ( ! function_exists( 'wbs_html_body_start' ) ) {
-    function wbs_html_body_start()
+if ( ! function_exists( 'WBS_Theme_html_body_start' ) ) {
+    function WBS_Theme_html_body_start()
     {
         ?>
         <body  <?php body_class(); ?>>
@@ -155,10 +155,10 @@ if ( ! function_exists( 'wbs_html_body_start' ) ) {
     <?php
     }
 }
-add_action('html_body_start','wbs_html_body_start',10);
+add_action('html_body_start','WBS_Theme_html_body_start',10);
 
-if ( ! function_exists( 'wbs_html_body_end' ) ) {
-    function wbs_html_body_end()
+if ( ! function_exists( 'WBS_Theme_html_body_end' ) ) {
+    function WBS_Theme_html_body_end()
     {
         ?>
         <footer>
@@ -184,48 +184,48 @@ if ( ! function_exists( 'wbs_html_body_end' ) ) {
     <?php
     }
 }
-add_action('html_body_end','wbs_html_body_end',10);
+add_action('html_body_end','WBS_Theme_html_body_end',10);
 
-if(!function_exists('wbs_comment_form_before')) {
-    function wbs_comment_form_before()
+if(!function_exists('WBS_Theme_comment_form_before')) {
+    function WBS_Theme_comment_form_before()
     {
         echo '<div class="comment-section"><div class="comment-content comment-content-2">';
     }
 }
-add_action('comment_form_before','wbs_comment_form_before');
+add_action('comment_form_before','WBS_Theme_comment_form_before');
 
-if(!function_exists('wbs_comment_form_after')) {
-    function wbs_comment_form_after()
+if(!function_exists('WBS_Theme_comment_form_after')) {
+    function WBS_Theme_comment_form_after()
     {
         echo '</div></div>';
     }
 }
-add_action('comment_form_after','wbs_comment_form_after');
+add_action('comment_form_after','WBS_Theme_comment_form_after');
 
-if(!function_exists('wbs_custom_comment_form')) {
-    function wbs_custom_comment_form()
+if(!function_exists('WBS_Theme_custom_comment_form')) {
+    function WBS_Theme_custom_comment_form()
     {
         //  return array('label_submit' => 'Test Submit');
     }
 }
-add_filter('comment_form_defaults','wbs_custom_comment_form');
+add_filter('comment_form_defaults','WBS_Theme_custom_comment_form');
 
-if(!function_exists('wbs_comment_form_logged_in')){
-    function wbs_comment_form_logged_in(){ return '';}
+if(!function_exists('WBS_Theme_comment_form_logged_in')){
+    function WBS_Theme_comment_form_logged_in(){ return '';}
 }
-//add_action('comment_form_logged_in','wbs_comment_form_logged_in');
+//add_action('comment_form_logged_in','WBS_Theme_comment_form_logged_in');
 
-if(!function_exists('wbs_comment_form_default_fields')){
-    function wbs_comment_form_default_fields(){
+if(!function_exists('WBS_Theme_comment_form_default_fields')){
+    function WBS_Theme_comment_form_default_fields(){
         $commenter = wp_get_current_commenter();
         $fields = '<div class="row"><div class="col-md-5"><div class="form-group"><input required type="text" class="form-control" placeholder="Screen Name or Nickname"  value="' . esc_attr( $commenter['comment_author'] ) . '"></div></div>';
         return $fields;
     }
 }
-add_filter('comment_form_default_fields','wbs_comment_form_default_fields',10,2);
+add_filter('comment_form_default_fields','WBS_Theme_comment_form_default_fields',10,2);
 
-if(!function_exists('func_wbs_comment_form')){
-    function func_wbs_comment_form(){
+if(!function_exists('func_WBS_Theme_comment_form')){
+    function func_WBS_Theme_comment_form(){
 
         $user = wp_get_current_user();
         $user_identity = $user->exists() ? $user->display_name : '';
@@ -247,10 +247,10 @@ if(!function_exists('func_wbs_comment_form')){
         return comment_form($args);
     }
 }
-add_filter('wbs_comment_form','func_wbs_comment_form');
+add_filter('WBS_Theme_comment_form','func_WBS_Theme_comment_form');
 
-if(!function_exists('wbs_custom_comment_list')){
-    function wbs_custom_comment_list($comment, $args, $depth){
+if(!function_exists('WBS_Theme_custom_comment_list')){
+    function WBS_Theme_custom_comment_list($comment, $args, $depth){
         ?>
         <div class="comment-section" id="comment-<?php comment_ID(); ?>">
             <div class="comment-content">
@@ -286,8 +286,8 @@ if(!function_exists('wbs_custom_comment_list')){
     }
 }
 
-if ( ! function_exists( 'wbs_get_websafe_fonts' ) ) :
-    function wbs_get_websafe_fonts() {
+if ( ! function_exists( 'WBS_Theme_get_websafe_fonts' ) ) :
+    function WBS_Theme_get_websafe_fonts() {
         $websafe_fonts = array(
             'Georgia' => array(
                 'styles' 		=> '300italic,400italic,600italic,700italic,800italic,400,300,600,700,800',
@@ -333,8 +333,8 @@ if ( ! function_exists( 'wbs_get_websafe_fonts' ) ) :
     }
 endif;
 
-if ( ! function_exists( 'wbs_get_google_api_key' ) ) :
-    function wbs_get_google_api_key() {
+if ( ! function_exists( 'WBS_Theme_get_google_api_key' ) ) :
+    function WBS_Theme_get_google_api_key() {
         $google_api_option = get_option( 'et_google_api_settings' );
         $google_api_key = isset( $google_api_option['api_key'] ) ? $google_api_option['api_key'] : '';
 
@@ -342,8 +342,8 @@ if ( ! function_exists( 'wbs_get_google_api_key' ) ) :
     }
 endif;
 
-if ( ! function_exists( 'wbs_get_one_font_languages' ) ) :
-    function wbs_get_one_font_languages() {
+if ( ! function_exists( 'WBS_Theme_get_one_font_languages' ) ) :
+    function WBS_Theme_get_one_font_languages() {
         $one_font_languages = array(
             'he_IL' => array(
                 'language_name'   => 'Hebrew',
@@ -386,19 +386,19 @@ if ( ! function_exists( 'wbs_get_one_font_languages' ) ) :
     }
 endif;
 
-if ( ! function_exists( 'wbs_get_google_fonts' ) ) :
-    function wbs_get_google_fonts() {
+if ( ! function_exists( 'WBS_Theme_get_google_fonts' ) ) :
+    function WBS_Theme_get_google_fonts() {
         // get hardcoded google fonts
-        require_once( WBS_INCLUDE_DIR . 'google-fonts-data.php' );
-        return wbs_get_saved_google_fonts();
+        require_once( WBS_THEME_INCLUDE_DIR . 'google-fonts-data.php' );
+        return WBS_Theme_get_saved_google_fonts();
 
-        $google_fonts_cache = get_option( 'wbs_google_fonts_cache', array() );
+        $google_fonts_cache = get_option( 'WBS_Theme_google_fonts_cache', array() );
 
-        if ( 'valid' === get_transient( 'wbs_google_fonts_cache_status' ) && ! empty( $google_fonts_cache ) ) {
+        if ( 'valid' === get_transient( 'WBS_Theme_google_fonts_cache_status' ) && ! empty( $google_fonts_cache ) ) {
             return apply_filters( 'et_builder_google_fonts', $google_fonts_cache );
         }
 
-        $google_api_key = wbs_get_google_api_key();
+        $google_api_key = WBS_Theme_get_google_api_key();
         $all_google_fonts = array();
 
         if ( '' !== $google_api_key ) {
@@ -419,23 +419,23 @@ if ( ! function_exists( 'wbs_get_google_fonts' ) ) :
                 );
             }
             // save google fonts and set the cache status to be valid for next 24 hours
-            update_option( 'wbs_google_fonts_cache', $google_fonts );
-            set_transient( 'wbs_google_fonts_cache_status', 'valid', 24 * HOUR_IN_SECONDS );
+            update_option( 'WBS_Theme_google_fonts_cache', $google_fonts );
+            set_transient( 'WBS_Theme_google_fonts_cache_status', 'valid', 24 * HOUR_IN_SECONDS );
         } else if ( ! empty( $google_fonts_cache ) ) {
             // still use cache if it's not empty and fonts update failed
-            return apply_filters( 'wbs_builder_google_fonts', $google_fonts_cache );
+            return apply_filters( 'WBS_Theme_builder_google_fonts', $google_fonts_cache );
         } else {
             // get hardcoded google fonts
-            require_once( WBS_INCLUDE_DIR . 'google-fonts-data.php' );
-            $google_fonts = wbs_get_saved_google_fonts();
+            require_once( WBS_THEME_INCLUDE_DIR . 'google-fonts-data.php' );
+            $google_fonts = WBS_Theme_get_saved_google_fonts();
         }
 
         return apply_filters( 'et_builder_google_fonts', $google_fonts );
     }
 endif;
 
-if ( ! function_exists( 'wbs_get_fonts' ) ) :
-    function wbs_get_fonts( $settings = array() ) {
+if ( ! function_exists( 'WBS_Theme_get_fonts' ) ) :
+    function WBS_Theme_get_fonts( $settings = array() ) {
         $defaults = array(
             'prepend_standard_fonts' => true,
         );
@@ -443,22 +443,22 @@ if ( ! function_exists( 'wbs_get_fonts' ) ) :
         $settings = wp_parse_args( $settings, $defaults );
 
         $fonts = $settings['prepend_standard_fonts']
-            ? array_merge( wbs_get_websafe_fonts(), wbs_get_google_fonts() )
-            : array_merge( wbs_get_google_fonts(), wbs_get_websafe_fonts() );
+            ? array_merge( WBS_Theme_get_websafe_fonts(), WBS_Theme_get_google_fonts() )
+            : array_merge( WBS_Theme_get_google_fonts(), WBS_Theme_get_websafe_fonts() );
 
         return $fonts;
     }
 endif;
 
-if ( ! function_exists( 'wbs_get_custom_fonts' ) ) :
-    function wbs_get_custom_fonts() {
-        $all_custom_fonts = get_option( 'wbs_uploaded_fonts', array() );
-        return apply_filters( 'wbs_custom_fonts', $all_custom_fonts );
+if ( ! function_exists( 'WBS_Theme_get_custom_fonts' ) ) :
+    function WBS_Theme_get_custom_fonts() {
+        $all_custom_fonts = get_option( 'WBS_Theme_uploaded_fonts', array() );
+        return apply_filters( 'WBS_Theme_custom_fonts', $all_custom_fonts );
     }
 endif;
 
-if(!function_exists('wbs_old_fonts_mapping')) {
-    function wbs_old_fonts_mapping()
+if(!function_exists('WBS_Theme_old_fonts_mapping')) {
+    function WBS_Theme_old_fonts_mapping()
     {
         return array(
             'Raleway Light' => array(
@@ -485,16 +485,16 @@ if(!function_exists('wbs_old_fonts_mapping')) {
     }
 }
 
-if(!function_exists('wbs_customize_register')){
-    function wbs_customize_register($wp_customize)
+if(!function_exists('WBS_Theme_customize_register')){
+    function WBS_Theme_customize_register($wp_customize)
     {
         $site_domain = get_locale();
 
-        $google_fonts = wbs_get_fonts( array(
+        $google_fonts = WBS_Theme_get_fonts( array(
             'prepend_standard_fonts' => false,
         ) );
 
-        $user_fonts = wbs_get_custom_fonts();
+        $user_fonts = WBS_Theme_get_custom_fonts();
 
         // combine google fonts with custom user fonts
         $google_fonts = array_merge( $user_fonts, $google_fonts );
@@ -507,14 +507,14 @@ if(!function_exists('wbs_customize_register')){
             'el' => 'greek',
         );
 
-        $et_one_font_languages = wbs_get_one_font_languages();
+        $et_one_font_languages = WBS_Theme_get_one_font_languages();
 
         $font_choices = array();
         $font_choices['none'] = array(
             'label' => 'Default Theme Font'
         );
 
-        $removed_fonts_mapping = wbs_old_fonts_mapping();
+        $removed_fonts_mapping = WBS_Theme_old_fonts_mapping();
 
         foreach ( $google_fonts as $google_font_name => $google_font_properties ) {
             $use_parent_font = false;
@@ -541,38 +541,38 @@ if(!function_exists('wbs_customize_register')){
         }
 
         /* header font */
-        $wp_customize->add_panel('wbs_typography', array(
+        $wp_customize->add_panel('WBS_Theme_typography', array(
             'priority' => 30,
             'capability' => 'edit_theme_options',
             'title' =>  __('Typography', 'wbs'),
             'description' => __('Customize theme typography.', 'wbs'),
         ));
-        $wp_customize->add_section('wbs_header', array(
+        $wp_customize->add_section('WBS_Theme_header', array(
             'title' => __('Header', 'wbs'),
             'priority' => 5,
-            'panel' => 'wbs_typography',
+            'panel' => 'WBS_Theme_typography',
         ));
-        $wp_customize->add_setting('wbs_heading_font', array(
+        $wp_customize->add_setting('WBS_Theme_heading_font', array(
             'default' => 'Poppins',
             'type' => 'option',
             'capability' => 'edit_theme_options',
         ));
-         $wp_customize->add_control( new Wbs_Select_Option ( $wp_customize, 'wbs_heading_font', array(
+         $wp_customize->add_control( new Wbs_Select_Option ( $wp_customize, 'WBS_Theme_heading_font', array(
              'label'		=> __( 'Header Font', 'wbs' ),
-             'section'	=> 'wbs_header',
-             'settings'	=> 'wbs_heading_font',
+             'section'	=> 'WBS_Theme_header',
+             'settings'	=> 'WBS_Theme_heading_font',
              'type'		=> 'select',
              'choices'	=> $font_choices,
          ) ) );
 
-        $wp_customize->add_setting('wbs_heading_font_size', array(
+        $wp_customize->add_setting('WBS_Theme_heading_font_size', array(
             'default' => '38',
             'type' => 'option',
             'capability' => 'edit_theme_options',
         ));
-        $wp_customize->add_control( new Wbs_Range_Option( $wp_customize, 'wbs_heading_font_size', array(
+        $wp_customize->add_control( new Wbs_Range_Option( $wp_customize, 'WBS_Theme_heading_font_size', array(
             'label'	      => esc_html__( 'Header Text Size', 'wbs' ),
-            'section'     => 'wbs_header',
+            'section'     => 'WBS_Theme_header',
             'type'        => 'range',
             'input_attrs' => array(
                 'min'  => 10,
@@ -582,33 +582,33 @@ if(!function_exists('wbs_customize_register')){
         ) ) );
          /* header font ends*/
         /* body font */
-        $wp_customize->add_section('wbs_body', array(
+        $wp_customize->add_section('WBS_Theme_body', array(
             'title' => __('Body', 'wbs'),
             'priority' => 6,
-            'panel' => 'wbs_typography',
+            'panel' => 'WBS_Theme_typography',
         ));
 
-        $wp_customize->add_setting('wbs_body_font', array(
+        $wp_customize->add_setting('WBS_Theme_body_font', array(
             'default' => 'Poppins',
             'type' => 'option',
             'capability' => 'edit_theme_options',
         ));
-        $wp_customize->add_control( new Wbs_Select_Option ( $wp_customize, 'wbs_body_font_ctrl', array(
+        $wp_customize->add_control( new Wbs_Select_Option ( $wp_customize, 'WBS_Theme_body_font_ctrl', array(
             'label'		=> __( 'Body Font', 'wbs' ),
-            'section'	=> 'wbs_body',
-            'settings'	=> 'wbs_body_font',
+            'section'	=> 'WBS_Theme_body',
+            'settings'	=> 'WBS_Theme_body_font',
             'type'		=> 'select',
             'choices'	=> $font_choices,
         ) ) );
 
-        $wp_customize->add_setting('wbs_body_font_size', array(
+        $wp_customize->add_setting('WBS_Theme_body_font_size', array(
             'default' => '14',
             'type' => 'option',
             'capability' => 'edit_theme_options',
         ));
-        $wp_customize->add_control( new Wbs_Range_Option( $wp_customize, 'wbs_body_font_size', array(
+        $wp_customize->add_control( new Wbs_Range_Option( $wp_customize, 'WBS_Theme_body_font_size', array(
             'label'	      => esc_html__( 'Body Text Size', 'wbs' ),
-            'section'     => 'wbs_body',
+            'section'     => 'WBS_Theme_body',
             'type'        => 'range',
             'input_attrs' => array(
                 'min'  => 10,
@@ -619,84 +619,84 @@ if(!function_exists('wbs_customize_register')){
 
         /* body font ends */
         /*custom color    */
-        $wp_customize->add_section('wbs_custom_color', array(
+        $wp_customize->add_section('WBS_Theme_custom_color', array(
         'priority' => 30,
         'capability' => 'edit_theme_options',
         'title' =>  __('Custom Color', 'wbs'),
         'description' => __('Customize theme color.', 'wbs'),
         ));
 
-        $wp_customize->add_setting('wbs_title_color', array(
+        $wp_customize->add_setting('WBS_Theme_title_color', array(
             'default' => '#f6bb17',
             'type' => 'option',
             'capability' => 'edit_theme_options',
         ));
 
-        if ( ! is_null( $wp_customize->get_setting( 'wbs_title_color' ) ) ) {
-            $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'wbs_title_color', array(
+        if ( ! is_null( $wp_customize->get_setting( 'WBS_Theme_title_color' ) ) ) {
+            $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'WBS_Theme_title_color', array(
                 'label'		=> esc_html__( 'Site Title Color', 'wbs' ),
-                'section'	=> 'wbs_custom_color',
+                'section'	=> 'WBS_Theme_custom_color',
             ) ) );
         }
-        $wp_customize->add_setting('wbs_heading_text_color', array(
+        $wp_customize->add_setting('WBS_Theme_heading_text_color', array(
             'default' => '#747474',
             'type' => 'option',
             'capability' => 'edit_theme_options',
         ));
 
-        if ( ! is_null( $wp_customize->get_setting( 'wbs_heading_text_color' ) ) ) {
-            $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'wbs_heading_text_color', array(
+        if ( ! is_null( $wp_customize->get_setting( 'WBS_Theme_heading_text_color' ) ) ) {
+            $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'WBS_Theme_heading_text_color', array(
                 'label'		=> esc_html__( 'Heading Text Color', 'wbs' ),
-                'section'	=> 'wbs_custom_color',
+                'section'	=> 'WBS_Theme_custom_color',
             ) ) );
         }
 
-        $wp_customize->add_setting('wbs_main_text_color', array(
+        $wp_customize->add_setting('WBS_Theme_main_text_color', array(
             'default' => '#747474',
             'type' => 'option',
             'capability' => 'edit_theme_options',
         ));
 
 
-        if ( ! is_null( $wp_customize->get_setting( 'wbs_main_text_color' ) ) ) {
-            $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'wbs_main_text_color', array(
+        if ( ! is_null( $wp_customize->get_setting( 'WBS_Theme_main_text_color' ) ) ) {
+            $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'WBS_Theme_main_text_color', array(
                 'label'		=> esc_html__( 'Main Text Color', 'wbs' ),
-                'section'	=> 'wbs_custom_color',
+                'section'	=> 'WBS_Theme_custom_color',
             ) ) );
         }
 
         /* custom color ends */
         /* Header image */
-        $wp_customize->add_section('wbs_header_image', array(
+        $wp_customize->add_section('WBS_Theme_header_image', array(
             'priority' => 30,
             'capability' => 'edit_theme_options',
             'title' =>  __('Header Image', 'wbs'),
             'description' => __('Customize theme Header image.', 'wbs'),
         ));
 
-        $wp_customize->add_setting('wbs_header_image', array(
+        $wp_customize->add_setting('WBS_Theme_header_image', array(
             'default' => '#',
             'type' => 'option',
             'capability' => 'edit_theme_options',
         ));
 
-        if ( ! is_null( $wp_customize->get_setting( 'wbs_header_image' ) ) ) {
-            $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'wbs_header_image', array(
+        if ( ! is_null( $wp_customize->get_setting( 'WBS_Theme_header_image' ) ) ) {
+            $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'WBS_Theme_header_image', array(
                 'label'		=> esc_html__( 'Header Image', 'wbs' ),
-                'section'	=> 'wbs_header_image',
+                'section'	=> 'WBS_Theme_header_image',
             ) ) );
         }
         /* header image ends */
         /* Title */
-        $wp_customize->add_section('wbs_title_override', array(
+        $wp_customize->add_section('WBS_Theme_title_override', array(
             'priority' => 30,
             'capability' => 'edit_theme_options',
             'title' =>  __('Title', 'wbs'),
             'description' => __('', 'wbs'),
         ));
-        $wp_customize->add_control('wbs_title_override_ctrl', array(
+        $wp_customize->add_control('WBS_Theme_title_override_ctrl', array(
             'label' => __('SITE TITLE', 'wbs'),
-            'section' => 'wbs_title_override',
+            'section' => 'WBS_Theme_title_override',
             'type' => 'option',
             'priority' => 30,
             'settings' => 'blogname'
@@ -710,9 +710,9 @@ if(!function_exists('wbs_customize_register')){
     }
 }
 
-add_action( 'customize_register', 'wbs_customize_register' );
+add_action( 'customize_register', 'WBS_Theme_customize_register' );
 
-add_action('after_switch_theme', 'wbs_setup_options');
+add_action('after_switch_theme', 'WBS_Theme_setup_options');
 
 if(!function_exists('the_slug_exists')) {
     function the_slug_exists($post_name)
@@ -726,8 +726,8 @@ if(!function_exists('the_slug_exists')) {
     }
 }
 
-if(!function_exists('wbs_add_menu_items')) {
-    function wbs_add_menu_items($pages, $parent_page_id = 0, $parent_id = 0, $menu_id = 0)
+if(!function_exists('WBS_Theme_add_menu_items')) {
+    function WBS_Theme_add_menu_items($pages, $parent_page_id = 0, $parent_id = 0, $menu_id = 0)
     {
         foreach ($pages as $slug => $title) {
             if (!is_array($title)) {
@@ -770,7 +770,7 @@ if(!function_exists('wbs_add_menu_items')) {
                     'menu-item-url' => home_url('/' . $_slug),
                     'menu-item-status' => 'publish'));
 
-                wbs_add_menu_items($title['childpages'], $_page_id, $parent_id, $menu_id);
+                WBS_Theme_add_menu_items($title['childpages'], $_page_id, $parent_id, $menu_id);
 
                 $parent_id = 0;
             }
@@ -779,13 +779,13 @@ if(!function_exists('wbs_add_menu_items')) {
     }
 }
 
-if(!function_exists('wbs_setup_options')) {
-    function wbs_setup_options()
+if(!function_exists('WBS_Theme_setup_options')) {
+    function WBS_Theme_setup_options()
     {
-       // echo 'wbs_setup_options';
-       // if(get_option('wbs_menu_created') === 0) {
-            add_option('wbs_menu_created', 1);
-            $menu_name = 'wbs_main_menu';
+       // echo 'WBS_Theme_setup_options';
+       // if(get_option('WBS_Theme_menu_created') === 0) {
+            add_option('WBS_Theme_menu_created', 1);
+            $menu_name = 'WBS_Theme_main_menu';
             $menu_exists = wp_get_nav_menu_object( $menu_name );
             // If it doesn't exist, let's create it.
             if( !$menu_exists){
@@ -813,7 +813,7 @@ if(!function_exists('wbs_setup_options')) {
                 $locations['primary-menu'] = $menu_id;
                 set_theme_mod( 'nav_menu_locations', $locations );
 
-                wbs_add_menu_items($pages,0,0,$menu_id);
+                WBS_Theme_add_menu_items($pages,0,0,$menu_id);
 
 
             }
@@ -821,12 +821,12 @@ if(!function_exists('wbs_setup_options')) {
     }
 }
 
-if(!function_exists('wbs_remove_menus')) {
-    function wbs_remove_menus()
+if(!function_exists('WBS_Theme_remove_menus')) {
+    function WBS_Theme_remove_menus()
     {
 
         remove_menu_page('nav-menus.php');        //Settings
 
     }
 }
-add_action( 'admin_menu', 'wbs_remove_menus' );
+add_action( 'admin_menu', 'WBS_Theme_remove_menus' );

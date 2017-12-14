@@ -8,8 +8,8 @@
  */
 ?>
 <section class="bunner">
-    <div class="container">
-        <div class="col-12">
+    <div class="container p-0">
+        <div class="col-12 p-0">
             <div class="bunner-bg-wrap"><div class="bunner-bg"></div></div>
         </div>
     </div>
